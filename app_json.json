@@ -1,0 +1,194 @@
+{
+    "name": "Serenica",
+    "version": "2.0.0",
+    "description": "Modern AI-powered therapy chatbot with RAG, safety guardrails, and personalization",
+    "architecture": {
+        "backend": {
+            "framework": "FastAPI",
+            "language": "Python 3.11+",
+            "server": "Uvicorn",
+            "async": true,
+            "features": [
+                "Async inference pipeline",
+                "WebSocket support for real-time chat",
+                "RESTful API with OpenAPI docs",
+                "JWT authentication",
+                "Request queuing with Celery",
+                "Background task processing"
+            ]
+        },
+        "frontend": {
+            "framework": "Next.js 14+",
+            "language": "TypeScript",
+            "features": [
+                "Server-side rendering",
+                "Real-time chat with WebSockets",
+                "User authentication & profiles",
+                "Mood tracking dashboard",
+                "Journal interface",
+                "Goal management UI",
+                "Crisis resource directory"
+            ],
+            "ui_library": "Shadcn/ui",
+            "styling": "Tailwind CSS",
+            "state_management": "TanStack Query + Zustand"
+        },
+        "database": {
+            "primary": "PostgreSQL 15+",
+            "extensions": ["pgvector", "uuid-ossp"],
+            "features": [
+                "Vector embeddings storage (384-dim)",
+                "Full-text search",
+                "JSONB for flexible schema",
+                "Time-series analytics"
+            ]
+        },
+        "ml_stack": {
+            "text_generation": {
+                "model": "Mistral 7B or Llama 2 13B",
+                "inference_engine": "Ollama or vLLM",
+                "features": [
+                    "4-bit quantization for efficiency",
+                    "Prompt injection prevention",
+                    "Token limiting"
+                ]
+            },
+            "embeddings": {
+                "model": "sentence-transformers/all-MiniLM-L6-v2",
+                "dimension": 384,
+                "use_case": "Semantic similarity & RAG"
+            },
+            "classification": {
+                "approach": "Semantic matching with embeddings",
+                "topics": ["anxiety", "depression", "relationship", "grief", "self-esteem", "work-life"],
+                "no_separate_model": true
+            },
+            "rag_framework": "LangChain",
+            "context_window": "4096 tokens"
+        },
+        "safety": {
+            "components": [
+                "Crisis keyword detection",
+                "Content filtering",
+                "Rate limiting",
+                "User input sanitization",
+                "Response validation"
+            ]
+        }
+    },
+    "features": {
+        "core": [
+            "Real-time multi-turn conversations",
+            "User authentication & profiles",
+            "Session management"
+        ],
+        "personalization": [
+            "User preferences (theme, language, communication style)",
+            "Therapy goal tracking",
+            "Conversation history with semantic search",
+            "Mood tracking & analytics"
+        ],
+        "safety": [
+            "Crisis detection & escalation",
+            "Self-harm indicators",
+            "Resource recommendations",
+            "Safety incident logging",
+            "Therapist review workflow"
+        ],
+        "engagement": [
+            "Journal integration",
+            "Feedback collection (ratings, helpful votes)",
+            "Progress visualization",
+            "Milestone tracking",
+            "Multi-language support"
+        ],
+        "admin": [
+            "Knowledge base management",
+            "Crisis resource directory",
+            "Model version control",
+            "Analytics dashboard",
+            "Safety incident review"
+        ]
+    },
+    "dependencies": {
+        "backend": {
+            "core": ["fastapi", "uvicorn", "sqlalchemy", "asyncpg", "pydantic"],
+            "ml": ["transformers", "torch", "sentence-transformers", "langchain"],
+            "database": ["alembic", "psycopg2-binary", "pgvector"],
+            "async": ["celery", "redis"],
+            "auth": ["python-jose", "passlib", "bcrypt", "python-multipart"],
+            "inference": ["ollama", "llama-cpp-python"],
+            "monitoring": ["sentry-sdk", "prometheus-client"],
+            "testing": ["pytest", "pytest-asyncio", "httpx"]
+        },
+        "frontend": {
+            "core": ["react@18", "next@14", "typescript"],
+            "ui": ["@shadcn/ui", "tailwindcss", "lucide-react"],
+            "state": ["@tanstack/react-query", "zustand"],
+            "communication": ["socket.io-client", "axios"],
+            "auth": ["next-auth", "jsonwebtoken"],
+            "charts": ["recharts", "chart.js"],
+            "forms": ["react-hook-form", "zod"],
+            "realtime": ["socket.io-client"]
+        }
+    },
+    "database_schema": {
+        "tables": 13,
+        "key_features": [
+            "Vector embeddings for RAG",
+            "Full conversation history with semantic search",
+            "Safety incident tracking",
+            "User preferences & goals",
+            "Journal & mood tracking",
+            "Knowledge base with source attribution",
+            "Model version control",
+            "Inference logging for monitoring"
+        ],
+        "schema_file": "schema.sql"
+    },
+    "deployment": {
+        "backend": ["Docker", "AWS ECS", "Kubernetes"],
+        "frontend": ["Vercel", "Netlify", "AWS Amplify"],
+        "ml_inference": ["Ollama", "vLLM", "AWS SageMaker"],
+        "database": ["AWS RDS PostgreSQL", "Railway", "Render"],
+        "cache": ["Redis"],
+        "queue": ["Celery"]
+    },
+    "data_requirements": {
+        "ideal_volume": {
+            "qa_pairs": "5000-10000 therapist-verified Q&A",
+            "conversation_examples": "1000+ real therapy conversations",
+            "crisis_resources": "500+ verified resources",
+            "multi_language": "en, es, fr, de minimum"
+        },
+        "quality": [
+            "Therapist verification",
+            "Diverse topic coverage",
+            "Cultural sensitivity",
+            "Evidence-based responses"
+        ],
+        "collection": [
+            "Partner with therapist networks",
+            "Use existing datasets (CounselChat)",
+            "Community contributions with review",
+            "Continuous feedback loop"
+        ]
+    },
+    "authors": [
+        {
+            "name": "Arsh Purohit",
+            "email": "arshpurohit@gmail.com"
+        },
+        {
+            "name": "Zachary Hodge",
+            "email": "zacharyhodge08@gmail.com"
+        }
+    ],
+    "timeline": {
+        "phase_1": "Backend migration (FastAPI, PostgreSQL, embeddings) - 1-2 weeks",
+        "phase_2": "ML pipeline upgrade (Mistral, RAG, safety) - 2 weeks",
+        "phase_3": "Frontend development (Next.js, real-time) - 2-3 weeks",
+        "phase_4": "Safety & compliance - 1 week",
+        "phase_5": "Deployment & monitoring - 1 week"
+    }
+}
